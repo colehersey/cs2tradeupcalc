@@ -1,0 +1,145 @@
+CS2 Tradeup Calculator Project
+
+Project Overview:
+Building a comprehensive Counter-Strike 2 (CS2) skin tradeup contract expected value calculator. This tool will help users determine the profitability of potential tradeup contracts
+by analyzing market prices, float values, wear tiers, and outcome probabilities.
+
+Core Functionality:
+Calculate expected value of 10-skin tradeup contracts
+Analyze all possible outcome scenarios with their probabilities
+Factor in current market prices for accurate profit/loss predictions
+Account for float value ranges and wear tier impacts on skin values
+Provide clear profit margin analysis and recommendations
+
+Technical Approach
+Primary Language: Python
+
+Rationale: Excellent for data manipulation, API integration, mathematical calculations, and rapid development
+Libraries to utilize: requests, pandas, numpy, json, tkinter/streamlit for GUI
+Secondary language: C++ only if performance optimization needed later
+
+Architecture Philosophy
+
+Modular design: Separate calculation engine from data fetching and UI
+Test-driven approach: Unit tests for all probability calculations
+API-first: Design for easy integration with multiple data sources
+Scalable structure: Build foundation that can handle additional features
+
+Development Guidelines
+Code Standards
+
+Use clear, descriptive variable names (e.g., input_skins_list, expected_profit_margin)
+Implement comprehensive error handling for API calls and data validation
+Write detailed comments for complex probability mathematics
+Use type hints where beneficial for skin data structures
+Follow consistent naming conventions for CS2-specific terminology
+
+Project Structure Preferences
+cs2_tradeup_calculator/
+├── src/
+│   ├── calculator/
+│   │   ├── tradeup_engine.py      # Core calculation logic
+│   │   ├── probability_calc.py    # Probability mathematics
+│   │   └── float_analysis.py      # Float value calculations
+│   ├── data/
+│   │   ├── skin_database.py       # Skin data management
+│   │   ├── market_api.py          # Price fetching
+│   │   └── collections.py         # CS2 collections data
+│   ├── gui/
+│   │   └── main_interface.py      # User interface
+│   └── utils/
+│       ├── validators.py          # Input validation
+│       └── helpers.py             # Utility functions
+├── tests/
+├── data/                          # Static skin data files
+├── config/                        # API keys, settings
+└── docs/                          # Documentation
+Development Priorities
+
+Week 1: Core calculation engine with hardcoded skin data
+Week 2: Live market integration and user interface
+Focus on accuracy first: Get the math right before UI polish
+Iterative testing: Validate calculations against known tradeup outcomes
+
+CS2-Specific Knowledge Base
+Key Concepts to Implement
+
+Tradeup Contracts: 10 skins → 1 skin from next tier up
+Float Values: 0.00-1.00 range affecting skin condition and value
+Wear Tiers: Factory New, Minimal Wear, Field-Tested, Well-Worn, Battle-Scarred
+Collections: Specific skin groupings that determine possible outcomes
+StatTrak: Special skin variant that affects pricing
+
+Data Sources to Integrate
+
+Primary: CSFloat API for pricing and skin data (API key required)
+Secondary: Buff API for additional pricing validation
+Static data: Local collection/skin databases for relationship mapping
+Compliance: Avoiding Steam APIs to prevent potential account issues
+
+CSFloat API Integration Details
+Authentication
+
+API key required from CSFloat profile under "developer" tab
+Header format: Authorization: <API-KEY>
+Store API key securely in config file
+
+Key Endpoints for Tradeup Calculator
+
+GET /api/v1/listings: Retrieve current market listings with pricing
+Query parameters available:
+
+market_hash_name: Filter by specific skin name
+min_float/max_float: Filter by float range
+collection: Filter by skin collection
+sort_by: Options include lowest_price, highest_price, lowest_float
+rarity: Filter by skin rarity level
+
+
+
+Important Data Fields from CSFloat
+
+price: Current listing price (in cents)
+float_value: Exact float value for wear calculation
+market_hash_name: Standardized skin name
+collection: Critical for determining tradeup outcomes
+rarity: Needed for tradeup tier calculations
+paint_index: Unique skin identifier
+wear_name: Factory New, Minimal Wear, etc.
+
+API Usage Strategy
+
+Batch requests by collection for efficiency
+Cache pricing data with timestamps for rate limiting
+Use float_value ranges to determine realistic outcome pricing
+Implement retry logic with exponential backoff
+
+Communication Style
+
+Provide practical, actionable coding advice
+Explain CS2-specific concepts when relevant
+Focus on implementation details over theoretical discussions
+Ask clarifying questions when requirements are ambiguous
+
+Code Generation Preferences
+
+Include error handling in all API-related code
+Add comments for complex mathematical operations
+Provide working examples with realistic CS2 skin data
+Suggest testing approaches for validation
+
+Problem-Solving Approach
+
+Break down complex features into manageable components
+Suggest incremental implementation strategies
+Recommend debugging techniques for calculation accuracy
+Propose optimization opportunities when appropriate
+
+Current Development Focus
+Starting with Python-based foundation, prioritizing calculation accuracy and modular architecture. Ready to dive into core tradeup probability mathematics and skin data structure design.
+Success Metrics
+
+Accurate expected value calculations within 5% of manual verification
+Successful integration with at least one live pricing API
+Clean, maintainable codebase ready for feature expansion
+User-friendly interface for inputting tradeup scenarios

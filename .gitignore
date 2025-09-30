@@ -1,2 +1,33 @@
-#ignore .env file
+# Environment files with API keys and secrets
 .env
+
+# Python bytecode and cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data files and cached pricing information
+data/*.json
+data/*.csv
+data/cache/
+
+# Log files
+*.log
+logs/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
